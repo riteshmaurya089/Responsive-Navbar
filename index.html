@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar with Dropdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff7e5f;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            position: relative;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #feb47b;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(214, 126, 198, 0.9);
+            display: none;
+            flex-direction: column;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown a:hover {
+            background-color: #444;
+        }
+
+        .nav-links li:hover .dropdown {
+            display: flex;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            text-align: center;
+            color: white;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+
+        .footer a {
+            color: #feb47b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #ff7e5f;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: rgba(159, 99, 99, 0.9);
+                border-radius: 0 0 8px 8px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .dropdown {
+                position: static;
+                display: none;
+            }
+
+            .dropdown.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Apna Website</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li>
+                <a href="#">About</a>
+                <div class="dropdown">
+                    <a href="#">Team</a>
+                    <a href="#">History</a>
+                    <a href="#">Vision</a>
+                </div>
+            </li>
+            <li>
+                <a href="#">Services</a>
+                <div class="dropdown">
+                    <a href="#">Web Development</a>
+                    <a href="#">App Development</a>
+                    <a href="#">UI/UX Design</a>
+                </div>
+            </li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <div class="hero-section">
+        <div>
+            <h1>Welcome to Apna Website</h1>
+            <p>Your journey to a better online experience starts here</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+        <p>Follow us on 
+            <a href="#">Facebook</a>, 
+            <a href="#">Twitter</a>, 
+            <a href="#">Instagram</a>,
+            <a href="#">Linkedin</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Handle dropdowns for small screens
+        document.querySelectorAll('.nav-links li').forEach(item => {
+            item.addEventListener('click', () => {
+                const dropdown = item.querySelector('.dropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
